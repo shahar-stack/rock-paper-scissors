@@ -30,3 +30,62 @@ function getHumanChoice() {
     return userChoice;
 }
 
+
+function capitalizeFirst (string) {
+    let first = string.at(0).toUpperCase();
+    string = string.slice(1);
+    return first+string;
+}
+
+function playRound (humanChoice, computerChoice) {
+    humanChoice = humanChoice.toLowerCase();
+    humanChoice = capitalizeFirst(humanChoice);
+    // Set it to be case-insensitive, human choice will always equal "Rock"/"Paper"/"Scissors"
+    // with only the first letter capitalized.
+
+    switch (humanChoice) {
+        case "Rock":
+            if (computerChoice == "Paper") {
+               computerScore++;
+               console.log("You lose! Paper beats Rock."); 
+            } else if (computerChoice == "Scissors") {
+                humanScore++;
+                console.log("You win! Rock beats Scissors."); 
+            } else {
+                console.log(`Tie! You both chose ${humanChoice}`);
+            }
+            break;
+        
+        case "Paper":
+            if (computerChoice == "Rock") {
+                humanScore++;
+                console.log("You win! Paper beats Rock."); 
+             } else if (computerChoice == "Scissors") {
+                 computerScore++;
+                 console.log("You lose! Scissors beats Paper."); 
+             } else {
+                console.log(`Tie! You both chose ${humanChoice}`);
+            }
+             break;
+        
+        case "Scissors":
+        if (computerChoice == "Rock") {
+            humanScore++;
+            console.log("You lose! Rock beats Scissors."); 
+            } else if (computerChoice == "Paper") {
+                computerScore++;
+                console.log("You win! Scissors beats Paper."); 
+            } else {
+                console.log(`Tie! You both chose ${humanChoice}`);
+            }
+            break;
+    }
+
+}
+
+let humanScore = 0;
+let computerScore = 0;
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection);
