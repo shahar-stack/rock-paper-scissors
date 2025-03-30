@@ -1,1 +1,2 @@
-# rock-paper-scissors
+# Rock Paper Scissors
+This is the first project involving JavaScript. I'll be making a simple rock paper scissors game which will be played by the human user against the computer. Each round the computer will be making a random decision and the user will be prompted to enter their choice as well.
