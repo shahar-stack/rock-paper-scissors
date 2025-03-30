@@ -1,5 +1,4 @@
 
-
 // Math.random generates a random number between 0-1, including 0.
 // Multiplies said number by 3 (eg. 0.56341431 * 3 = 1.69).
 // Math.floor rounds down to the nearest whole number (1.69 --> 1).
@@ -22,8 +21,7 @@ function getComputerChoice() {
     }
 }
 
-
-// For getting the human choice we'll need to use the prompt method for user input (assume valid input).
+// We're assuming valid (yet case *in*sensitive) input from the user. No need to validate it. 
 
 function getHumanChoice() {
     let userChoice = prompt("Enter your choice: Rock, Paper or Scissors");
@@ -36,10 +34,6 @@ function capitalizeFirst (string) {
     string = string.slice(1);
     return first+string;
 }
-
-
-// For the playGame function we will run a simple for loop for 5 iterations.
-// Within each iteration we will call the playRound() function and increase the appropriate score accordingly.
 
 function playGame () {
 
