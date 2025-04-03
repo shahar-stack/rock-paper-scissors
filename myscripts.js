@@ -24,6 +24,13 @@ function getComputerChoice() {
 let humanScore = 0;
 let computerScore = 0;
 
+const scorecard = document.querySelector("#results");
+const scorecardHuman = document.querySelector("#human");
+const scorecardComputer = document.querySelector("#computer");
+const message = document.createElement("p");
+const announcement = document.createElement("p");
+scorecard.appendChild(message);
+
 function playRound (humanChoice, computerChoice) {
     
 
@@ -31,37 +38,62 @@ function playRound (humanChoice, computerChoice) {
         case "Rock":
             if (computerChoice == "Paper") {
                 computerScore++;
+                message.textContent = "You lose! Paper beats Rock.";
             } else if (computerChoice == "Scissors") {
                 humanScore++;
+                message.textContent = "You win! Rock beats Scissors.";
             } else {
-                humanScore = humanScore;
-                computerScore = computerScore;
+                message.textContent = `Tie! You both chose ${humanChoice}`;
             }
             break;
         
         case "Paper":
             if (computerChoice == "Rock") {
                 humanScore++;
-                } else if (computerChoice == "Scissors") {
-                    computerScore++;
-                } else {
-                    humanScore = humanScore;
-                    computerScore = computerScore;
-                }
-                break;
+                message.textContent = "You win! Paper beats Rock.";
+            } else if (computerChoice == "Scissors") {
+                computerScore++;
+                message.textContent = "You lose! Scissors beats Paper.";
+            } else {
+                message.textContent = `Tie! You both chose ${humanChoice}`;
+            }
+            break;
         
         case "Scissors":
             if (computerChoice == "Rock") {
                 computerScore++;
-                } else if (computerChoice == "Paper") {
-                    humanScore++;
-                } else {
-                    humanScore = humanScore;
-                    computerScore = computerScore;
-                }
-                break;
+                message.textContent = "You lose! Rock beats Scissors.";
+            } else if (computerChoice == "Paper") {
+                humanScore++;
+                message.textContent = "You win! Scissors beats Paper.";
+            } else {
+                message.textContent = `Tie! You both chose ${humanChoice}`;
+            }
+            break;
     }
 
+    scorecardHuman.textContent = `Human Score: ${humanScore}`;
+    scorecardComputer.textContent = `Computer Score: ${computerScore}`;
+
+    if (humanScore == 5 || computerScore == 5) {
+        scorecard.appendChild(announcement);
+        
+        if (humanScore == 5) {
+        announcement.textContent = "You won 5 turns, congrats! You beat the computer :D.";
+        announcement.style.cssText = "color: white; background: green;";
+        } else {
+            announcement.textContent = "Sadly, you lost to the computer :(.";
+            announcement.style.cssText = "color: white; background: red;";
+        }
+        
+        rock.disabled = true;
+        paper.disabled = true;
+        scissors.disabled = true;
+        // const resetButton = document.createElement("button");
+        // scorecard.appendChild(resetButton);
+
+
+    }
 }
 
 let playerSelection;
