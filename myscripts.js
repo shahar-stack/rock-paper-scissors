@@ -21,85 +21,75 @@ function getComputerChoice() {
     }
 }
 
-// We're assuming valid (yet case *in*sensitive) input from the user. No need to validate it. 
+let humanScore = 0;
+let computerScore = 0;
 
-function getHumanChoice() {
-    let userChoice = prompt("Enter your choice: Rock, Paper or Scissors");
-    return userChoice;
-}
-
-
-function capitalizeFirst (string) {
-    let first = string.at(0).toUpperCase();
-    string = string.slice(1);
-    return first+string;
-}
-
-function playGame () {
-
-    function playRound (humanChoice, computerChoice) {
-        humanChoice = humanChoice.toLowerCase();
-        humanChoice = capitalizeFirst(humanChoice);
-        // Set it to be case-insensitive, human choice will always equal "Rock"/"Paper"/"Scissors"
-        // with only the first letter capitalized.
+function playRound (humanChoice, computerChoice) {
     
-        switch (humanChoice) {
-            case "Rock":
-                if (computerChoice == "Paper") {
-                   computerScore++;
-                   console.log("You lose! Paper beats Rock."); 
+
+    switch (humanChoice) {
+        case "Rock":
+            if (computerChoice == "Paper") {
+                computerScore++;
+            } else if (computerChoice == "Scissors") {
+                humanScore++;
+            } else {
+                humanScore = humanScore;
+                computerScore = computerScore;
+            }
+            break;
+        
+        case "Paper":
+            if (computerChoice == "Rock") {
+                humanScore++;
                 } else if (computerChoice == "Scissors") {
-                    humanScore++;
-                    console.log("You win! Rock beats Scissors."); 
+                    computerScore++;
                 } else {
-                    console.log(`Tie! You both chose ${humanChoice}`);
+                    humanScore = humanScore;
+                    computerScore = computerScore;
                 }
                 break;
-            
-            case "Paper":
-                if (computerChoice == "Rock") {
-                    humanScore++;
-                    console.log("You win! Paper beats Rock."); 
-                 } else if (computerChoice == "Scissors") {
-                     computerScore++;
-                     console.log("You lose! Scissors beats Paper."); 
-                 } else {
-                    console.log(`Tie! You both chose ${humanChoice}`);
-                }
-                 break;
-            
-            case "Scissors":
+        
+        case "Scissors":
             if (computerChoice == "Rock") {
                 computerScore++;
-                console.log("You lose! Rock beats Scissors."); 
                 } else if (computerChoice == "Paper") {
                     humanScore++;
-                    console.log("You win! Scissors beats Paper."); 
                 } else {
-                    console.log(`Tie! You both chose ${humanChoice}`);
+                    humanScore = humanScore;
+                    computerScore = computerScore;
                 }
                 break;
-        }
-    
-    }
-    
-    let humanScore = 0;
-    let computerScore = 0;
-
-    for (let i = 0; i < 5; i++) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
     }
 
-
-    if (humanScore == computerScore) {
-        console.log(`Tie! You tied the computer ${humanScore} to ${computerScore}!`);
-    } else if (humanScore > computerScore) {
-        console.log(`Congrats user! You beat the computer ${humanScore} to ${computerScore}!`);
-    } else {
-        console.log(`Unfortunately, the computer emerged victorious. You lost ${humanScore} to ${computerScore}!`);
-    }
 }
 
-playGame();
+let playerSelection;
+let computerSelection;
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+
+rock.addEventListener("click", () => {
+    playerSelection = "Rock";
+    computerSelection = getComputerChoice();
+    // console.log("Computer selection: " + computerSelection);
+    playRound(playerSelection, computerSelection);
+});
+
+paper.addEventListener("click", () => {
+    playerSelection = "Paper";
+    computerSelection = getComputerChoice();
+    // console.log("Computer selection: " + computerSelection);
+    playRound(playerSelection, computerSelection);
+});
+
+scissors.addEventListener("click", () => {
+    playerSelection = "Scissors";
+    computerSelection = getComputerChoice();
+    // console.log("Computer selection: " + computerSelection);
+    playRound(playerSelection, computerSelection);
+});
+
+
+
