@@ -89,8 +89,12 @@ function playRound (humanChoice, computerChoice) {
         rock.disabled = true;
         paper.disabled = true;
         scissors.disabled = true;
-        // const resetButton = document.createElement("button");
-        // scorecard.appendChild(resetButton);
+        
+        const resetButton = document.createElement("button");
+        resetButton.setAttribute("id", "reset");
+        scorecard.appendChild(resetButton);
+        resetButton.textContent = "Reset Game";
+        resetButton.onclick = () => window.location.reload(); // refresh page
 
 
     }
